@@ -9,8 +9,8 @@ export const allUsers = async (req, res) => {
 // user login
 export const login = async (req, res) => {
     try {
-        const loginUser = await User.find({userId: req.body.userId, passWord : req.body.passWord});
-        if(user.length === 0){
+        const loginUser = await User.find({email: req.body.email, passWord : req.body.passWord});
+        if(loginUser.length === 0){
             res.status(401).json({message : "userId or password not found"})
         }else {
             res.status(200).json(loginUser)
