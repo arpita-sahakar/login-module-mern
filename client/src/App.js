@@ -6,9 +6,8 @@ import Display from './components/displayComponent/Display';
 function App() {
   return (
     <div className="App">
-      <h1>Hello</h1>
-      <SignUp />
       <Login />
+      <SignUp />
       <Display />
     </div>
   );
