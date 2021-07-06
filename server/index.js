@@ -1,6 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
-// import employeeRoutes from "./routes.js";
+import userRoutes from "./routes.js";
 
 
 
@@ -45,7 +45,7 @@ app.get("/api/config", (req, res) => {
     res.send("connected successfully..")
   });
 
-// app.use("/employee", employeeRoutes)
+app.use("/users", userRoutes)
 
 // Start the API server
 app.listen(PORT, function () {
