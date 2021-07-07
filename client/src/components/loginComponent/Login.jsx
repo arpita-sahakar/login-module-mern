@@ -1,4 +1,5 @@
 import React from 'react';
+import {  Link as RouterLink} from "react-router-dom";
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -68,20 +69,24 @@ export default function Login() {
             autoComplete="current-password"
           />
 
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Login
-          </Button>
+          
+            <Button
+              type="button"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              <RouterLink to="/welcomepage">Login</RouterLink>
+              
+            </Button>
+        
+
           <Grid container>
             <Grid item>
-              <Link href="#" variant="body2">
+              <RouterLink to="/signup" variant="body2">
                 {"Don't have an account? Sign Up"}
-              </Link>
+              </RouterLink>
             </Grid>
           </Grid>
         </form>

@@ -1,30 +1,29 @@
-// import React from 'react';
-// import "../../App.css"
-
-// function Display() {
-//     return (
-//         <div>
-//             <h2 className="displayUser">Welcome Arpita</h2>
-//         </div>
-//     )
-// }
-
-// export default Display
-
 import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
 
-export default function SimpleContainer() {
+export default function Display() {
   return (
-    <React.Fragment>
-      <CssBaseline />
-      <Container maxWidth="sm">
-        <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '50vh' }}>
+    <>
+      <React.Fragment>
+        <CssBaseline />
+        <Container maxWidth="sm">
+          <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '50vh' }}>
             <h1 className="displayUser">Welcome User</h1>
-        </Typography>
-      </Container>
-    </React.Fragment>
+          </Typography>
+          <Grid container justifyContent="flex-end">
+        <Grid item>
+          <Link href="#" variant="body2">
+            Go back to Login
+          </Link>
+        </Grid>
+      </Grid>
+        </Container>
+      </React.Fragment>
+
+    </>
   );
 }
