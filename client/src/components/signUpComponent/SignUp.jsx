@@ -9,6 +9,7 @@ import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { Link as RouterLink } from "react-router-dom";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -100,13 +101,13 @@ export default function SignUp() {
             color="primary"
             className={classes.submit}
           >
-            Sign Up
+            <RouterLink to="/welcomepage"> Sign Up </RouterLink>
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
+              <RouterLink to="/">
                 Already have an account? Login
-              </Link>
+              </RouterLink>
             </Grid>
           </Grid>
         </form>

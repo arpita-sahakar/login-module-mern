@@ -2,8 +2,9 @@ import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import Link from '@material-ui/core/Link';
+// import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
+import {Link} from "react-router-dom";
 
 export default function Display() {
   return (
@@ -16,7 +17,7 @@ export default function Display() {
           </Typography>
           <Grid container justifyContent="flex-end">
         <Grid item>
-          <Link href="#" variant="body2">
+          <Link to="/">
             Go back to Login
           </Link>
         </Grid>

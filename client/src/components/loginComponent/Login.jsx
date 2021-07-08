@@ -84,7 +84,7 @@ export default function Login() {
 
           <Grid container>
             <Grid item>
-              <RouterLink to="/signup" variant="body2">
+              <RouterLink to="/signup">
                 {"Don't have an account? Sign Up"}
               </RouterLink>
             </Grid>
