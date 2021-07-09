@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Link as RouterLink } from "react-router-dom";
+import axios from "axios";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -32,7 +33,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUp() {
+export default function SignUp({ setSignup, signup }) {
+
+  const createUser = ()=>{
+    axios.post("/users/signup", signup).then(res=>{
+      console.log(res.data)
+    });
+    setSignup("");
+    // window.location.replace("/welcomepage")
+  }
+
+
   const classes = useStyles();
 
   return (
@@ -49,6 +60,7 @@ export default function SignUp() {
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
+                onChange={e => setSignup({ ...signup, firstName: e.target.value })}
                 autoComplete="fname"
                 name="firstName"
                 variant="outlined"
@@ -61,6 +73,7 @@ export default function SignUp() {
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
+                onChange={e => setSignup({ ...signup, lastName: e.target.value })}
                 variant="outlined"
                 required
                 fullWidth
@@ -72,6 +85,7 @@ export default function SignUp() {
             </Grid>
             <Grid item xs={12}>
               <TextField
+                onChange={e => setSignup({ ...signup, email: e.target.value })}
                 variant="outlined"
                 required
                 fullWidth
@@ -83,6 +97,7 @@ export default function SignUp() {
             </Grid>
             <Grid item xs={12}>
               <TextField
+                onChange={e => setSignup({ ...signup, passWord: e.target.value })}
                 variant="outlined"
                 required
                 fullWidth
@@ -95,13 +110,14 @@ export default function SignUp() {
             </Grid>
           </Grid>
           <Button
+            onClick={createUser}
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
           >
-            <RouterLink to="/welcomepage"> Sign Up </RouterLink>
+            <RouterLink to=""> Sign Up </RouterLink>
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
