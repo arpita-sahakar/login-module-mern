@@ -35,12 +35,14 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp({ setSignup, signup }) {
 
-  const createUser = ()=>{
-    axios.post("/users/signup", signup).then(res=>{
-      console.log(res.data)
+  const createUser = () => {
+    axios.post("/users/signup", signup).then(res => {
+      console.log(res.data);
+      window.location.replace("/welcomepage")
+    }).catch(err =>{
+      alert(err.response.data)
     });
-    setSignup("");
-    // window.location.replace("/welcomepage")
+
   }
 
 
@@ -111,13 +113,14 @@ export default function SignUp({ setSignup, signup }) {
           </Grid>
           <Button
             onClick={createUser}
-            type="submit"
+            type="button"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
           >
-            <RouterLink to=""> Sign Up </RouterLink>
+            signup
+            {/* <RouterLink to=""> Sign Up </RouterLink> */}
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>

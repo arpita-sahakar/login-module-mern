@@ -1,5 +1,5 @@
 import React from 'react';
-import {  Link as RouterLink} from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -10,6 +10,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import axios from 'axios';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -32,8 +33,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Login() {
+export default function Login({ setLogin, login }) {
   const classes = useStyles();
+
+  const LoginUser = () => {
+    axios.post("/users/login", login).then(res => {
+      window.location.replace("/welcomepage")
+    }).catch(err => {
+      console.log(err.response.data.message);
+      alert(err.response.data.message)
+    })
+  }
+
 
   return (
     <Container component="main" maxWidth="xs">
@@ -47,6 +58,7 @@ export default function Login() {
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
+            onChange={e => setLogin({ ...login, email: e.target.value })}
             variant="outlined"
             margin="normal"
             required
@@ -58,6 +70,7 @@ export default function Login() {
             autoFocus
           />
           <TextField
+            onChange={e => setLogin({ ...login, passWord: e.target.value })}
             variant="outlined"
             margin="normal"
             required
@@ -69,18 +82,20 @@ export default function Login() {
             autoComplete="current-password"
           />
 
-          
-            <Button
-              type="button"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-            >
-              <RouterLink to="/welcomepage">Login</RouterLink>
-              
-            </Button>
-        
+
+          <Button
+            onClick={LoginUser}
+            type="button"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            login
+            {/* <RouterLink to="/welcomepage">Login</RouterLink> */}
+
+          </Button>
+
 
           <Grid container>
             <Grid item>
