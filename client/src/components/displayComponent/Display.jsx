@@ -6,14 +6,14 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import {Link} from "react-router-dom";
 
-export default function Display() {
+export default function Display({logedInUser}) {
   return (
     <>
       <React.Fragment>
         <CssBaseline />
         <Container maxWidth="sm">
           <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '50vh' }}>
-            <h1 className="displayUser">Welcome User</h1>
+            <h1 className="displayUser">Welcome {logedInUser.firstName} {logedInUser.lastName}</h1>
           </Typography>
           <Grid container justifyContent="flex-end">
         <Grid item>

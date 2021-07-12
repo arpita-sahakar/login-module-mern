@@ -14,6 +14,7 @@ import {
 
 function App() {
   const [login, setLogin] = useState({ email: "", passWord: "" });
+  const [logedInUser, setLogedInUser] = useState({firstName :"", lastName :""})
   const [signup, setSignup] = useState({ email: "", passWord: "", firstName: "", lastName: "" });
   return (
 
@@ -21,13 +22,13 @@ function App() {
       <Router>
         <Switch>
           <Route path="/" exact>
-            <Login login={login} setLogin={setLogin}/>
+            <Login login={login} setLogin={setLogin} setLogedInUser={setLogedInUser} logedInUser={logedInUser}/>
           </Route>
           <Route path="/signup">
             <SignUp signup={signup} setSignup={setSignup} />
           </Route>
           <Route path="/welcomepage">
-            <Display />
+            <Display logedInUser={logedInUser}/>
           </Route>
         </Switch>
       </Router>

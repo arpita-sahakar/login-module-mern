@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink , useHistory} from "react-router-dom";
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -33,19 +33,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Login({ setLogin, login }) {
+export default function Login({ setLogin, login, logedInUser, setLogedInUser }) {
   const classes = useStyles();
+  let history = useHistory();
 
   const LoginUser = () => {
     axios.post("/users/login", login).then(res => {
-      window.location.replace("/welcomepage")
+      console.log(res.data)
+      setLogedInUser({firstName : res.data[0].firstName , lastName : res.data[0].lastName});
+      history.push("/welcomepage")
+      
     }).catch(err => {
       console.log(err.response.data.message);
       alert(err.response.data.message)
     })
   }
-
-
+ 
+  
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />

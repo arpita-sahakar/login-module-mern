@@ -8,8 +8,10 @@ export const allUsers = async (req, res) => {
 
 // user login
 export const login = async (req, res) => {
+    // console.log(req.body);
     try {
         const loginUser = await User.find({email: req.body.email, passWord : req.body.passWord});
+        console.log(loginUser);
         if(loginUser.length === 0){
             res.status(401).json({message : "userId or password not found"})
         }else {
@@ -27,6 +29,7 @@ export const signUp = async (req, res) => {
         const createUser = await User.create(req.body);
         res.status(201).json(createUser)
     } catch (error) {
-        res.status(500).json(error.message)
+        console.log(error.message)
+        res.status(500).json(error)
     }
 }

@@ -9,7 +9,7 @@ import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useHistory } from "react-router-dom";
 import axios from "axios";
 
 
@@ -34,17 +34,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignUp({ setSignup, signup }) {
+  
+  let history = useHistory();
 
   const createUser = () => {
     axios.post("/users/signup", signup).then(res => {
       console.log(res.data);
-      window.location.replace("/welcomepage")
-    }).catch(err =>{
+      history.push("/welcomepage")
+    }).catch(err => {
       alert(err.response.data)
     });
 
   }
-
 
   const classes = useStyles();
 
