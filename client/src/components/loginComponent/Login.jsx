@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import axios from 'axios';
+import AlertDisplay from '../displayComponent/AlertDisplay';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -33,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Login({ setLogin, login, logedInUser, setLogedInUser }) {
+export default function Login({ setLogin, login, logedInUser, setLogedInUser, setLoginErrMsg, LoginErrMsg }) {
   const classes = useStyles();
   let history = useHistory();
 
@@ -44,7 +45,7 @@ export default function Login({ setLogin, login, logedInUser, setLogedInUser }) 
       history.push("/welcomepage")
       
     }).catch(err => {
-      console.log(err.response.data.message);
+      setLoginErrMsg(err.response.data.message);
       alert(err.response.data.message)
     })
   }
@@ -52,6 +53,7 @@ export default function Login({ setLogin, login, logedInUser, setLogedInUser }) 
   
   return (
     <Container component="main" maxWidth="xs">
+      <AlertDisplay LoginErrMsg={LoginErrMsg}/>
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
