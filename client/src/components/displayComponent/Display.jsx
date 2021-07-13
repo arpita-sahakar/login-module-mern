@@ -6,25 +6,27 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import {Link} from "react-router-dom";
 
-export default function Display({logedInUser}) {
-  return (
-    <>
-      <React.Fragment>
-        <CssBaseline />
-        <Container maxWidth="sm">
-          <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '50vh' }}>
-            <h1 className="displayUser">Welcome {logedInUser.firstName} {logedInUser.lastName}</h1>
-          </Typography>
-          <Grid container justifyContent="flex-end">
-        <Grid item>
-          <Link to="/">
-            Go back to Login
-          </Link>
+export default function Display({logedInSignUpUser}) {
+    return (
+      <>
+        <React.Fragment>
+          <CssBaseline />
+          <Container maxWidth="sm">
+            <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '50vh' }}>
+              <h1 className="displayUser">Welcome {logedInSignUpUser.firstName} {logedInSignUpUser.lastName}</h1>
+            </Typography>
+            <Grid container justifyContent="flex-end">
+          <Grid item>
+            <Link to="/">
+              Go back to Login
+            </Link>
+          </Grid>
         </Grid>
-      </Grid>
-        </Container>
-      </React.Fragment>
+          </Container>
+        </React.Fragment>
+  
+      </>
+    );
+  
 
-    </>
-  );
 }

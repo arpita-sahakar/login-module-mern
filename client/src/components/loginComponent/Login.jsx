@@ -34,14 +34,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Login({ setLogin, login, logedInUser, setLogedInUser, setLoginErrMsg, loginErrMsg, setLoginVisible, loginVisible }) {
+export default function Login({ setLogin, login, logedInSignUpUser, setlogedInSignUpUser, setLoginErrMsg, loginErrMsg, setLoginVisible, loginVisible }) {
   const classes = useStyles();
   let history = useHistory();
 
   const LoginUser = () => {
     axios.post("/users/login", login).then(res => {
       console.log(res.data)
-      setLogedInUser({ firstName: res.data[0].firstName, lastName: res.data[0].lastName });
+      setlogedInSignUpUser({ firstName: res.data[0].firstName, lastName: res.data[0].lastName });
       history.push("/welcomepage")
 
     }).catch(err => {

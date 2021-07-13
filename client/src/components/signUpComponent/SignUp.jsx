@@ -33,16 +33,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUp({ setSignup, signup }) {
+export default function SignUp({ setSignup, signup, setlogedInSignUpUser }) {
   
   let history = useHistory();
 
   const createUser = () => {
     axios.post("/users/signup", signup).then(res => {
       console.log(res.data);
+      setlogedInSignUpUser({firstName : res.data.firstName, lastName: res.data.lastName})
       history.push("/welcomepage")
     }).catch(err => {
-      alert(err.response.data)
+      console.log(err.response.data)
     });
 
   }
