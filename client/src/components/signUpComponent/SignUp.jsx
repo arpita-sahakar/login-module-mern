@@ -11,6 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Link as RouterLink, useHistory } from "react-router-dom";
 import axios from "axios";
+import AlertDisplay from '../displayComponent/AlertDisplay';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -33,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUp({ setSignup, signup, setlogedInSignUpUser }) {
+export default function SignUp({ setSignup, signup, setlogedInSignUpUser, setErrMsgs , errMsgs, loginVisible, setLoginVisible}) {
   
   let history = useHistory();
 
@@ -43,7 +44,14 @@ export default function SignUp({ setSignup, signup, setlogedInSignUpUser }) {
       setlogedInSignUpUser({firstName : res.data.firstName, lastName: res.data.lastName})
       history.push("/welcomepage")
     }).catch(err => {
-      console.log(err.response.data)
+      console.log(err.response.data);
+      setErrMsgs(err.response.data);
+      setLoginVisible(true);
+
+      setTimeout(()=>{
+        setErrMsgs([]);
+        setLoginVisible(false);
+      },2000)
     });
 
   }
@@ -51,7 +59,8 @@ export default function SignUp({ setSignup, signup, setlogedInSignUpUser }) {
   const classes = useStyles();
 
   return (
-    <Container component="main" maxWidth="xs">
+        <Container component="main" maxWidth="xs">
+          <AlertDisplay errMsgs={errMsgs} loginVisible={loginVisible}/>
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>

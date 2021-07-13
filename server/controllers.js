@@ -29,7 +29,9 @@ export const signUp = async (req, res) => {
         const createUser = await User.create(req.body);
         res.status(201).json(createUser)
     } catch (error) {
-        console.log(error.message)
-        res.status(500).json(error)
+        console.log(error.message);
+        const errMsg = error.message.split(","); // will retuen an array after doing comma seperated
+        console.log(errMsg);
+        res.status(500).json(errMsg)
     }
 }

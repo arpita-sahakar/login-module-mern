@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Login({ setLogin, login, logedInSignUpUser, setlogedInSignUpUser, setLoginErrMsg, loginErrMsg, setLoginVisible, loginVisible }) {
+export default function Login({ setLogin, login, logedInSignUpUser, setlogedInSignUpUser, setErrMsgs, errMsgs, setLoginVisible, loginVisible }) {
   const classes = useStyles();
   let history = useHistory();
 
@@ -45,12 +45,12 @@ export default function Login({ setLogin, login, logedInSignUpUser, setlogedInSi
       history.push("/welcomepage")
 
     }).catch(err => {
-      setLoginErrMsg(err.response.data.message);
+      setErrMsgs([err.response.data.message]);
       setLoginVisible(true);
 
 
       setTimeout(() => {
-        setLoginErrMsg("");
+        setErrMsgs([]);
         setLoginVisible(false);
       }, 2000)
 
@@ -60,7 +60,7 @@ export default function Login({ setLogin, login, logedInSignUpUser, setlogedInSi
 
   return (
     <Container component="main" maxWidth="xs">
-      <AlertDisplay loginErrMsg={loginErrMsg} loginVisible={loginVisible} />
+      <AlertDisplay errMsgs={errMsgs} loginVisible={loginVisible} />
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>

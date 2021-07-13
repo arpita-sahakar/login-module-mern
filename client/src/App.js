@@ -14,12 +14,14 @@ import {
 
 function App() {
   const [login, setLogin] = useState({ email: "", passWord: "" });
-  const [loginErrMsg, setLoginErrMsg] = useState("");
-  const [loginVisible, setLoginVisible] = useState(false);
+ 
 
   const [logedInSignUpUser, setlogedInSignUpUser] = useState({ firstName: "", lastName: ""});
+  const [errMsgs, setErrMsgs] = useState([]);
+  const [loginVisible, setLoginVisible] = useState(false);
 
   const [signup, setSignup] = useState({ email: "", passWord: "", firstName: "", lastName: "" });
+
 
   
   return (
@@ -28,13 +30,13 @@ function App() {
       <Router>
         <Switch>
           <Route path="/" exact>
-            <Login login={login} setLogin={setLogin} setlogedInSignUpUser={setlogedInSignUpUser} logedInSignUpUser={logedInSignUpUser} setLoginErrMsg={setLoginErrMsg} loginErrMsg={loginErrMsg} setLoginVisible={setLoginVisible} loginVisible={loginVisible} />
+            <Login login={login} setLogin={setLogin} setlogedInSignUpUser={setlogedInSignUpUser} setErrMsgs={setErrMsgs} errMsgs={errMsgs} setLoginVisible={setLoginVisible} loginVisible={loginVisible} />
           </Route>
           <Route path="/signup">
-            <SignUp signup={signup} setSignup={setSignup} setlogedInSignUpUser={setlogedInSignUpUser} />
+            <SignUp signup={signup} setSignup={setSignup} setlogedInSignUpUser={setlogedInSignUpUser} setErrMsgs={setErrMsgs} errMsgs={errMsgs} setLoginVisible={setLoginVisible} loginVisible={loginVisible}/>
           </Route>
           <Route path="/welcomepage">
-            <Display logedInSignUpUser={logedInSignUpUser}  />
+            <Display logedInSignUpUser={logedInSignUpUser} />
           </Route>
         </Switch>
       </Router>
